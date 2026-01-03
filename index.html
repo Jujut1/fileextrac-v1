@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇮🇩 CYBER indonet — TEXT CRYPTOR PRO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --cyber-red: #ff0040;
+            --cyber-red-glow: rgba(255, 0, 64, 0.7);
+            --cyber-dark: #0a0a0a;
+            --cyber-gray: #1a1a1a;
+            --cyber-light: #e0e0e0;
+            --cyber-green: #00ff88;
+            --cyber-blue: #00ccff;
+            --cyber-purple: #9d00ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Courier New', monospace;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #000000, #1a001a, #33000d);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .glossy-effect {
+            background: linear-gradient(145deg, rgba(20,20,20,0.95), rgba(40,0,10,0.95));
+            border-radius: 20px;
+            border: 1px solid rgba(255, 0, 64, 0.3);
+            box-shadow: 
+                0 0 40px rgba(255, 0, 64, 0.3),
+                inset 0 1px 0 rgba(255,255,255,0.1),
+                inset 0 -1px 0 rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, var(--cyber-red), #ff3300, #ff0066);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px var(--cyber-red-glow);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .header .tagline {
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+        
+        .header .cyber-line {
+            height: 3px;
+            width: 200px;
+            background: linear-gradient(90deg, transparent, var(--cyber-red), transparent);
+            margin: 0 auto;
+        }
+        
+        .main-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 900px) {
+            .main-panel {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .panel {
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .panel-title {
+            font-size: 1.8rem;
+            color: var(--cyber-red);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .panel-title i {
+            font-size: 2rem;
+        }
+        
+        .mode-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .mode-btn {
+            flex: 1;
+            padding: 18px 10px;
+            background: rgba(255, 0, 64, 0.1);
+            border: 2px solid var(--cyber-red);
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .mode-btn:hover {
+            background: rgba(255, 0, 64, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 0, 64, 0.2);
+        }
+        
+        .mode-btn.active {
+            background: var(--cyber-red);
+            box-shadow: 0 0 25px var(--cyber-red-glow);
+        }
+        
+        .input-area {
+            width: 100%;
+            min-height: 250px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(255, 0, 64, 0.5);
+            border-radius: 15px;
+            color: white;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            resize: vertical;
+            margin-bottom: 25px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .input-area:focus {
+            outline: none;
+            border-color: var(--cyber-red);
+            box-shadow: 0 0 20px rgba(255, 0, 64, 0.3);
+        }
+        
+        .key-section {
+            margin-bottom: 30px;
+        }
+        
+        .key-label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--cyber-blue);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .key-input-wrapper {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .key-input {
+            flex: 1;
+            padding: 18px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--cyber-blue);
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+        }
+        
+        .key-btn {
+            padding: 0 25px;
+            background: var(--cyber-blue);
+            border: none;
+            border-radius: 12px;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .key-btn:hover {
+            background: #00aaff;
+            transform: translateY(-2px);
+        }
+        
+        .key-strength {
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .key-strength-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff0000, #ff9900, #00ff00);
+            border-radius: 3px;
+            transition: width 0.5s;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 22px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .encrypt-btn {
+            background: linear-gradient(135deg, var(--cyber-red), #cc0000);
+            color: white;
+        }
+        
+        .decrypt-btn {
+            background: linear-gradient(135deg, var(--cyber-green), #00cc66);
+            color: black;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+        
+        .action-btn:active {
+            transform: translateY(-2px);
+        }
+        
+        .detection-panel {
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .detection-title {
+            font-size: 1.8rem;
+            color: var(--cyber-green);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .detection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .detection-card {
+            padding: 25px;
+            background: rgba(0, 30, 0, 0.3);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+        
+        .detection-card:hover {
+            border-color: var(--cyber-green);
+            transform: translateY(-5px);
+        }
+        
+        .detection-card.detected {
+            background: rgba(0, 60, 0, 0.5);
+            border-color: var(--cyber-green);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+        }
+        
+        .detection-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .detection-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--cyber-green);
+        }
+        
+        .detection-status {
+            padding: 8px 15px;
+            background: rgba(255, 0, 0, 0.2);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #ff6666;
+        }
+        
+        .detection-status.detected {
+            background: rgba(0, 255, 136, 0.2);
+            color: var(--cyber-green);
+        }
+        
+        .detection-details {
+            color: #aaa;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .result-panel {
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .result-title {
+            font-size: 1.8rem;
+            color: var(--cyber-purple);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .result-content {
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--cyber-purple);
+            border-radius: 15px;
+            margin-bottom: 25px;
+            min-height: 200px;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+        
+        .result-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .result-btn {
+            padding: 18px 35px;
+            background: var(--cyber-purple);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .result-btn:hover {
+            background: #7d00cc;
+            transform: translateY(-3px);
+        }
+        
+        .status-bar {
+            padding: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: none;
+        }
+        
+        .status-processing {
+            background: rgba(0, 204, 255, 0.2);
+            border: 2px solid var(--cyber-blue);
+            color: var(--cyber-blue);
+        }
+        
+        .status-success {
+            background: rgba(0, 255, 136, 0.2);
+            border: 2px solid var(--cyber-green);
+            color: var(--cyber-green);
+        }
+        
+        .status-error {
+            background: rgba(255, 0, 64, 0.2);
+            border: 2px solid var(--cyber-red);
+            color: var(--cyber-red);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 0, 64, 0.2);
+        }
+        
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 0, 64, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 64, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .scan-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--cyber-red), transparent);
+            box-shadow: 0 0 20px var(--cyber-red);
+            animation: scan 3s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cyber-grid"></div>
+    <div class="scan-line"></div>
+    
+    <div class="container">
+        <div class="header glossy-effect">
+            <h1><i class="fas fa-skull-crossbones"></i> CYBER indonet CRYPTOR</h1>
+            <div class="tagline">Text Encryption & Detection System — Recognize ALL Encrypted Formats</div>
+            <div class="cyber-line"></div>
+            <div style="margin-top: 20px; color: #ff6666;">
+                <i class="fas fa-shield-alt"></i> Military Grade AES-256 GCM • Auto Format Detection • Zero Error
+            </div>
+        </div>
+        
+        <div class="main-panel">
+            <div class="panel glossy-effect">
+                <div class="panel-title">
+                    <i class="fas fa-keyboard"></i> INPUT TEXT
+                </div>
+                
+                <div class="mode-selector">
+                    <button id="encryptMode" class="mode-btn active">
+                        <i class="fas fa-lock"></i> ENCRYPT MODE
+                    </button>
+                    <button id="decryptMode" class="mode-btn">
+                        <i class="fas fa-unlock"></i> DECRYPT MODE
+                    </button>
+                </div>
+                
+                <textarea id="inputText" class="input-area" placeholder="Paste atau ketik text di sini...&#10;&#10;Contoh encrypted text:&#10;U2FsdGVkX1+5X4Z7cJzQkHq7pKjW8mNtLpOqR2sT4uVw==&#10;48656C6C6F20576F726C64 (hex)&#10;SGVsbG8gV29ybGQ= (base64)"></textarea>
+                
+                <div class="key-section">
+                    <label class="key-label">
+                        <i class="fas fa-key"></i> ENCRYPTION KEY
+                    </label>
+                    <div class="key-input-wrapper">
+                        <input type="text" id="keyInput" class="key-input" placeholder="Masukkan encryption key atau generate random">
+                        <button id="generateKey" class="key-btn">
+                            <i class="fas fa-dice"></i> RANDOM
+                        </button>
+                    </div>
+                    <div class="key-strength">
+                        <div id="keyStrengthBar" class="key-strength-bar"></div>
+                    </div>
+                    <div id="keyStrengthText" style="color: #aaa; font-size: 0.9rem; margin-top: 5px;"></div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="processEncrypt" class="action-btn encrypt-btn">
+                        <i class="fas fa-lock"></i> ENCRYPT TEXT
+                    </button>
+                    <button id="processDecrypt" class="action-btn decrypt-btn">
+                        <i class="fas fa-unlock"></i> DECRYPT TEXT
+                    </button>
+                </div>
+            </div>
+            
+            <div class="panel glossy-effect">
+                <div class="panel-title">
+                    <i class="fas fa-eye"></i> LIVE PREVIEW
+                </div>
+                
+                <div id="livePreview" class="input-area" style="min-height: 450px; background: rgba(0,0,0,0.8);">
+                    <div style="text-align: center; padding: 40px; color: #666;">
+                        <i class="fas fa-code" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                        <div>Hasil akan muncul di sini</div>
+                        <div style="font-size: 0.9rem; margin-top: 10px;">Hex + ASCII + Base64 view</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; color: #ff9900; font-size: 0.9rem;">
+                    <i class="fas fa-info-circle"></i> Preview update real-time saat mengetik
+                </div>
+            </div>
+        </div>
+        
+        <div id="statusBar" class="status-bar" style="display: none;">
+            <i class="fas fa-sync fa-spin"></i> <span id="statusText">Processing...</span>
+        </div>
+        
+        <div class="detection-panel glossy-effect">
+            <div class="detection-title">
+                <i class="fas fa-search"></i> ENCRYPTION DETECTOR
+            </div>
+            <div class="detection-grid" id="detectionGrid">
+                <!-- Detection cards will be added by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="result-panel glossy-effect">
+            <div class="result-title">
+                <i class="fas fa-file-code"></i> RESULT OUTPUT
+            </div>
+            <pre id="resultOutput" class="result-content">// Output akan muncul di sini setelah proses</pre>
+            <div class="result-actions">
+                <button id="copyResult" class="result-btn">
+                    <i class="fas fa-copy"></i> COPY TO CLIPBOARD
+                </button>
+                <button id="clearAll" class="result-btn" style="background: var(--cyber-red);">
+                    <i class="fas fa-trash"></i> CLEAR ALL
+                </button>
+                <button id="saveResult" class="result-btn" style="background: var(--cyber-blue);">
+                    <i class="fas fa-download"></i> SAVE AS FILE
+                </button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div style="margin-bottom: 10px;">
+                <i class="fas fa-terminal"></i> CYBER indonet FROSTWOLF SYSTEM — DETECTS: Base64 • Hex • AES • DES • RC4 • XOR • ROT13 • BINARY • ZLIB • GZIP • URL Encoding
+            </div>
+            <div>🇮🇩 100% Client-Side • No Data Sent • Military Grade Encryption</div>
+        </div>
+    </div>
+
+    <script>
+        // ====================== DETECTION PATTERNS ======================
+        const ENCRYPTION_PATTERNS = [
+            {
+                name: "Base64",
+                regex: /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/,
+                description: "Standard Base64 encoding (A-Z, a-z, 0-9, +, /, =)",
+                confidence: 0.9
+            },
+            {
+                name: "Hex",
+                regex: /^[0-9A-Fa-f]+$/,
+                description: "Hexadecimal representation (0-9, A-F)",
+                confidence: 0.8
+            },
+            {
+                name: "AES Encrypted",
+                regex: /^U2FsdGVkX1[0-9A-Za-z+/=]+$/,
+                description: "OpenSSL AES format (starts with U2FsdGVkX1)",
+                confidence: 0.95
+            },
+            {
+                name: "Binary",
+                regex: /^[01]+(\s+[01]+)*$/,
+                description: "Binary data (0s and 1s)",
+                confidence: 0.7
+            },
+            {
+                name: "ROT13",
+                regex: /^[A-Za-z]+$/,
+                test: (text) => {
+                    if (text.length < 3) return false;
+                    const rot13 = text.replace(/[A-Za-z]/g, c => 
+                        String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26)
+                    );
+                    return /[A-Za-z]{3,}/.test(rot13);
+                },
+                description: "ROT13 cipher (letters only)",
+                confidence: 0.6
+            },
+            {
+                name: "UR
